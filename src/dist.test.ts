@@ -27,7 +27,9 @@ const PKG = JSON.parse(readFileSync(new URL("../package.json", import.meta.url),
   dependencies?: Record<string, string>;
   license: string;
   mcpName?: string;
+  repository?: { type: string; url: string };
 };
+const REPO_URL = "https://github.com/GridlineGPU/gridline-mcp";
 
 /** Send JSON-RPC lines to the server over stdio and collect the answers by id. */
 async function converse(main: string, messages: object[], wantIds: number[]) {
@@ -104,7 +106,7 @@ describe("published package shape", () => {
       description: string;
       version: string;
       websiteUrl: string;
-      repository?: unknown;
+      repository?: { url: string; source: string };
       packages: {
         registryType: string;
         registryBaseUrl: string;
@@ -123,8 +125,9 @@ describe("published package shape", () => {
     expect(server.version).toBe(PKG.version);
     expect(server.description.length).toBeLessThanOrEqual(100);
     expect(server.websiteUrl).toBe("https://gridlinegpu.com/docs/agents");
-    // The source repository is private, so server.json links the docs, not the repository.
-    expect(server.repository).toBeUndefined();
+    // The public mirror of this package (the monorepo itself is private).
+    expect(server.repository).toEqual({ url: REPO_URL, source: "github" });
+    expect(PKG.repository).toEqual({ type: "git", url: `git+${REPO_URL}.git` });
     expect(server.packages).toHaveLength(1);
     const npm = server.packages[0];
     if (npm === undefined) throw new Error("server.json lists no package");

@@ -4,13 +4,17 @@
   "title": "Gridline",
   "description": "Fine-tune, evaluate and batch open models through Gridline's OpenAI-compatible API.",
   "websiteUrl": "https://gridlinegpu.com/docs/agents",
-  "version": "0.1.1",
+  "repository": {
+    "url": "https://github.com/GridlineGPU/gridline-mcp",
+    "source": "github"
+  },
+  "version": "0.1.2",
   "packages": [
     {
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@gridlinegpu/mcp",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "transport": {
         "type": "stdio"
       },
