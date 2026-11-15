@@ -1,0 +1,44 @@
+{
+  "name": "@gridlinegpu/mcp",
+  "version": "0.1.1",
+  "description": "Gridline's MCP server: let an AI agent fine-tune, evaluate and batch open models through Gridline's OpenAI-compatible API.",
+  "license": "MIT",
+  "mcpName": "io.github.GridlineGPU/mcp",
+  "homepage": "https://gridlinegpu.com/docs/agents",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "fine-tuning",
+    "batch",
+    "evals",
+    "gridline"
+  ],
+  "type": "module",
+  "bin": {
+    "gridline-mcp": "./dist/main.js"
+  },
+  "files": [
+    "dist/main.js",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "bun scripts/build.ts",
+    "start": "bun src/main.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@types/bun": "^1.3.11",
+    "typescript": "^7.0.2",
+    "zod": "^4.4.3"
+  }
+}
